@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph Chiu | Sports Photography</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #f0f5fb;
+      --white: #0d1b2a;
+      --accent: #1a6fc4;
+      --gray: #dde8f5;
+      --mid: #4a6d8c;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(240,245,251,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #c5d8ee;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      color: var(--mid);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--white); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(26,111,196,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(26,111,196,0.08) 0%, transparent 60%);
+    }
+
+    .hero-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 12vw, 11rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-title em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: var(--mid);
+      max-width: 420px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: inline-block;
+      padding: 0.85rem 2.4rem;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .hero-cta:hover { background: #c93518; transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; right: 3rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      writing-mode: vertical-rl;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 7rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1;
+      letter-spacing: 0.03em;
+      margin-bottom: 3rem;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #c5d8ee;
+      margin: 0;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #2a4060;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 2rem;
+    }
+
+    .fact-item { }
+    .fact-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .fact-value {
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
+
+    .portfolio-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #222;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--mid);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.9rem 1.8rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+
+    .tab-btn:hover { color: var(--white); }
+    .tab-btn.active { color: var(--white); border-bottom-color: var(--accent); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .portfolio-intro {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #bbb;
+      max-width: 720px;
+      margin-bottom: 3rem;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--gray);
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-card:hover img { transform: scale(1.05); }
+
+    .photo-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem 1.2rem 1.2rem;
+      background: linear-gradient(transparent, rgba(13,27,42,0.92));
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-card:hover .photo-overlay { transform: translateY(0); }
+
+    .photo-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    .photo-desc {
+      font-size: 0.78rem;
+      color: #b8d0e8;
+      line-height: 1.5;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #dde8f5;
+      color: #8aabbf;
+      gap: 0.5rem;
+    }
+
+    .photo-placeholder .icon { font-size: 2rem; }
+    .photo-placeholder .ph-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ── RESUME ── */
+    #resume-section { max-width: 1200px; margin: 0 auto; padding: 7rem 3rem; }
+
+    .resume-wrap {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+    }
+
+    .resume-col-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    .resume-block { margin-bottom: 2.5rem; }
+
+    .resume-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #c5d8ee;
+    }
+
+    .resume-item-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .resume-item-sub {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
+    .resume-item-desc {
+      font-size: 0.85rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .skill-tag {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid #aac4e0;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2a5a8c;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    .resume-placeholder {
+      grid-column: 1 / -1;
+      padding: 3rem;
+      border: 1px dashed #333;
+      text-align: center;
+      color: var(--mid);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid #1e1e1e;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.2rem; }
+      #hero { padding: 0 1.5rem 4rem; }
+      section, #portfolio, #resume-section { padding: 5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .resume-wrap { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">JOSEPH <span>CHIU</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#resume-section">Resume</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-label">Sports Photography Portfolio</p>
+  <h1 class="hero-title">JOSEPH<br><em>CHIU</em></h1>
+  <p class="hero-sub">Sports photography from Mission San Jose High School. Basketball, water polo, dance, and everything in between.</p>
+  <a class="hero-cta" href="#portfolio">View My Work</a>
+  <span class="hero-scroll">Scroll to Explore</span>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who I Am</p>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        My name is Joseph Chiu and I'm a senior at Mission San Jose High School in Fremont, California. I got into sports photography because I wanted a reason to stay close to the games I grew up watching, and somewhere along the way it turned into something I actually care a lot about.
+      </p>
+      <p>
+        I shoot mostly sports: basketball, water polo, and live events like Dance Bazzi. What I like about it is that you can't really plan the shot. You just have to know the game well enough to be in the right spot and hope your timing is good. I've missed plenty of shots, but the ones that work out make it worth it.
+      </p>
+      <p>
+        Outside of class I play pickup basketball pretty regularly, which honestly helps when I'm shooting games because I already know where the action is going. I'm also a big music fan, especially Bazzi, which is part of why covering Dance Bazzi was so fun for me. This portfolio is a collection of my best work from this school year across three different projects.
+      </p>
+    </div>
+    <div class="about-facts">
+      <div class="fact-item">
+        <div class="fact-label">Name</div>
+        <div class="fact-value">Joseph Chiu</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">Grade</div>
+        <div class="fact-value">12th Grade, Senior</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">School</div>
+        <div class="fact-value">Mission San Jose High School</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">Focus</div>
+        <div class="fact-value">Sports Photography</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">Fun Fact</div>
+        <div class="fact-value">I play pickup basketball every weekend and I always end up photographing the games instead of playing in them.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">Also Into</div>
+        <div class="fact-value">Graphic design, music (big Bazzi fan), and live event coverage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio">
+  <p class="section-label">My Work</p>
+  <h2 class="section-title">Portfolio</h2>
+
+  <div class="portfolio-tabs">
+    <button class="tab-btn active" onclick="switchTab('basketball')">Basketball</button>
+    <button class="tab-btn" onclick="switchTab('dance')">Dance Bazzi</button>
+    <button class="tab-btn" onclick="switchTab('waterpolo')">Water Polo</button>
+  </div>
+
+  <!-- BASKETBALL -->
+  <div class="tab-content active" id="tab-basketball">
+    <p class="portfolio-intro">
+      Basketball is where I started taking photography seriously. I shot these games courtside at Mission San Jose, trying to get as close to the action as possible without getting in the way. Gym lighting is tricky because it's usually pretty harsh and uneven, so a lot of this was figuring out the right shutter speed to freeze movement without losing too much light. I focused on the moments right before and after big plays, layups, contested shots, and the bench reactions. Playing basketball myself made it easier to anticipate where things were headed, which helped a lot with timing.
+    </p>
+    <div class="photo-grid" id="grid-basketball">
+      <div class="photo-card">
+        <img src="NCS--5.jpeg" alt="The Closeout" />
+        <div class="photo-overlay">
+          <div class="photo-title">The Closeout</div>
+          <div class="photo-desc">A defender flies in to contest the ball handler driving baseline. Shot low from the corner to get the gym and the basket in the frame.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="NCS-2.jpeg" alt="Fist Pump" />
+        <div class="photo-overlay">
+          <div class="photo-title">Fist Pump</div>
+          <div class="photo-desc">A Mission San Jose player celebrates after scoring. The wide angle and low position made the whole court the backdrop.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="NCS--6.jpeg" alt="Pull Up" />
+        <div class="photo-overlay">
+          <div class="photo-title">Pull Up</div>
+          <div class="photo-desc">Number 32 rises up for a mid-range jumper with defenders closing in. Caught at the peak of his release with the Mission San Jose gym wall visible behind him.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DANCE BAZZI -->
+  <div class="tab-content" id="tab-dance">
+    <p class="portfolio-intro">
+      Dance Bazzi is one of the biggest events at Mission San Jose and I was glad I got to shoot it this year. It's a different kind of challenge compared to sports because the lighting is always changing and you're trying to capture a specific moment in a performance rather than just reacting to whatever happens. I spent a lot of time figuring out angles from the audience and the sides of the stage. Stage lighting can wash things out or create really cool shadows depending on where you are, so positioning mattered a lot. These photos ended up being some of my favorites from the whole year just because of how dynamic everything looked.
+    </p>
+    <div class="photo-grid" id="grid-dance">
+      <div class="photo-card">
+        <img src="BAZZII--3.jpeg" alt="Hair Whip" />
+        <div class="photo-overlay">
+          <div class="photo-title">Hair Whip</div>
+          <div class="photo-desc">A performer mid-turn with her hair sweeping across the frame. The blue stage lighting and dark background made the sparkle in the costume pop.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="BAZZII--2.jpeg" alt="Center Stage" />
+        <div class="photo-overlay">
+          <div class="photo-title">Center Stage</div>
+          <div class="photo-desc">Three dancers in matching red and white skirts spin in sync. Captured the lead performer at the front with her arms fully extended toward the crowd.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="BAZZII--6.jpeg" alt="The Dip" />
+        <div class="photo-overlay">
+          <div class="photo-title">The Dip</div>
+          <div class="photo-desc">A duet captured at the lowest point of a dip. Shot against the dark curtain backdrop which helped isolate the two performers and keep the focus on them.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="BAZZII--8.jpeg" alt="In the Crowd" />
+        <div class="photo-overlay">
+          <div class="photo-title">In the Crowd</div>
+          <div class="photo-desc">A solo performer steps forward from the full cast behind her. The energy from the group in the background made this one of the best crowd shots from the night.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WATER POLO -->
+  <div class="tab-content" id="tab-waterpolo">
+    <p class="portfolio-intro">
+      Water polo was honestly one of the harder things I've shot this year. The pool lighting is tough, the water reflects everything, and the athletes are moving fast in a confined space. I shot from pool deck level to stay as close to the water as I could, which gave the photos a better angle than shooting from the stands. A lot of it came down to timing because the best moments happen when someone is coming up out of the water or fighting for position. I had to trash a lot of shots before I started getting ones I was happy with, but the process of figuring it out was worth it.
+    </p>
+    <div class="photo-grid" id="grid-waterpolo">
+      <div class="photo-card">
+        <img src="Washington_Vs_Mission_Girls-88.jpeg" alt="Point Blank" />
+        <div class="photo-overlay">
+          <div class="photo-title">Point Blank</div>
+          <div class="photo-desc">A player rises out of the water right at the goal post for a close-range shot. The frozen water droplets around her and the packed crowd in the background came together perfectly.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="Washington_Vs_Mission_Girls-118.jpeg" alt="Contested Pass" />
+        <div class="photo-overlay">
+          <div class="photo-title">Contested Pass</div>
+          <div class="photo-desc">Two players battle for possession mid-pool with the goal frame visible in the distance. Shot at night which gave the pool water a deep teal color that I really liked.</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="Washington_Vs_Mission_Girls-13.jpeg" alt="Sideline Talk" />
+        <div class="photo-overlay">
+          <div class="photo-title">Sideline Talk</div>
+          <div class="photo-desc">The coach crouches at the pool edge giving instructions to players huddled at the wall during a break. Shot from water level, it captures the strategy side of the sport people don't usually see.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESUME -->
+<div id="resume-section">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">Resume</h2>
+
+  <div class="resume-wrap">
+
+    <!-- LEFT COLUMN -->
+    <div>
+      <div class="resume-block">
+        <div class="resume-col-title">Education</div>
+        <div class="resume-item">
+          <div class="resume-item-title">Mission San Jose High School</div>
+          <div class="resume-item-sub">Fremont, CA · 2026 · GPA 3.5</div>
+          <div class="resume-item-desc">AP Bio, AP Psych, AP Chinese, AP Environmental Science, AP Stats, AP Micro, AP Macro</div>
+        </div>
+      </div>
+
+      <div class="resume-block">
+        <div class="resume-col-title">Awards & Honors</div>
+        <div class="resume-item">
+          <div class="resume-item-title">Varsity Boy's Water Polo Most Improved Player</div>
+          <div class="resume-item-desc">Selected as 1 of 15 varsity athletes based on measurable growth, consistency, and overall contribution to the team throughout the season.</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-title">JV Boy's Swimming Most Valuable Swimmer</div>
+          <div class="resume-item-desc">Selected by the coach for best overall performance across all dual meets and invitationals.</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-title">National Taekwondo Bronze Medal</div>
+          <div class="resume-item-desc">Top three in the 14-17 age division at the U.S. National Taekwondo Championships.</div>
+        </div>
+      </div>
+
+      <div class="resume-block">
+        <div class="resume-col-title">Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Sports Photography</span>
+          <span class="skill-tag">Video Editing</span>
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Customer Service</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Attention to Detail</span>
+          <span class="skill-tag">Chinese Mandarin</span>
+          <span class="skill-tag">Dependable</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div>
+      <div class="resume-block">
+        <div class="resume-col-title">Experience</div>
+
+        <div class="resume-item">
+          <div class="resume-item-title">Swim Instructor / Pool Supervisor</div>
+          <div class="resume-item-sub">Hippo Swim Club · August 2025 – Present</div>
+          <div class="resume-item-desc">Taught swimmers ages 4-14 freestyle, backstroke, breaststroke, and butterfly. Created lesson plans, tracked progress, supervised pool deck, monitored safety, and communicated with parents about goals and swimmer development.</div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-title">Distributor</div>
+          <div class="resume-item-sub">Second Harvest of Silicon Valley · November 2024 – November 2025</div>
+          <div class="resume-item-desc">Sorted produce and packed groceries for hundreds of families each shift. Trained new volunteers, coordinated assembly lines during busy hours, and promoted the charity at school to bring in new volunteers.</div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-title">Tutor</div>
+          <div class="resume-item-sub">Piano · April 2025 – Present</div>
+          <div class="resume-item-desc">Planned individualized lessons for beginner students covering scales, music theory, and proper posture. Guided students through recital preparation and helped them build discipline and stage confidence.</div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-title">Video Editor</div>
+          <div class="resume-item-sub">August 2024 – Present</div>
+          <div class="resume-item-desc">Edited promotional and event videos for 7+ school clubs. Coordinated with club presidents and social media directors to plan shoots, refine messaging, and meet tight deadlines.</div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-title">Taekwondo Instructor</div>
+          <div class="resume-item-sub">August 2020 – Present</div>
+          <div class="resume-item-desc">Taught forms, sparring, and self-defense to students ages 5-40. Adapted lessons to different learning styles and mentored shy beginners into confident students through patience and steady guidance.</div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-title">Varsity Athlete, Swimming</div>
+          <div class="resume-item-sub">December 2025 – May 2026</div>
+          <div class="resume-item-desc">Led warmups, taught stroke form, and mentored younger swimmers. Took charge of meet lineups for the new coach, placing swimmers in events where they could contribute most.</div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-title">Varsity Athlete, Water Polo</div>
+          <div class="resume-item-sub">August 2024 – May 2026</div>
+          <div class="resume-item-desc">Led warmups, mentored JV athletes on passing and shooting, and organized 30+ service hours of tournaments and scrimmages for teams across the league.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="divider"></div>
+<footer>
+  <div class="footer-logo">JOSEPH <span>CHIU</span></div>
+  <div class="footer-copy">© 2025 · Mission San Jose High School · Sports Photography</div>
+</footer>
+
+<script>
+  function switchTab(name) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
